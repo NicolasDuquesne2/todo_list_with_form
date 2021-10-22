@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <title>To do list</title>
+</head>
+<body>
+    <header class="main-header">
+        <h1 class="main-title">Tâches</h1>
+    </header>
+    <main class="main-wrapper">
+        <div class="tab-list">
+        </div>
+        <div class="tab-controller">
+            <form class= "form" action="index.html" method="post" onsubmit="return validate(event);" novalidate>
+                <label for="description"> Ajouter une tâche</label>
+                <span class="text-input"
+                id="text-imput-wrap"
+                data-error="Veuillez entrer 2 caractères ou plus. Ne commance ni par un espace ni par un chiffre" 
+                data-error-visible="false">
+                <input type="text" name="description" id="description" required>
+                </span>
+                <input type="submit" value="Ajouter" class="submit-button" id="tab-submit-button">
+            </form>
+        </div>
+    </main>
+    <footer class="main-footer">
+
+    </footer>
+</body>
+</html>
