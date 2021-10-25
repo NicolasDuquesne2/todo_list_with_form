@@ -7,6 +7,7 @@ const inputWrapper = document.getElementById("text-imput-wrap");
 const submitButton = document.getElementById("tab-submit-button");
 const formLabel = document.querySelector("label[for='description']");
 const toDoListWrapper = document.querySelector(".tab-list");
+let todoTaskHtml = "";
 
 /* On loading page */
 
@@ -32,6 +33,7 @@ function validate(event) {
     
     if(checkInputValue(input)) {
         commitEntry(input.value);
+        inputWrapper.setAttribute("data-error-visible", "false");
         input.value = "";
     } else {
         inputWrapper.setAttribute("data-error-visible", "true");
@@ -161,36 +163,14 @@ function delateInArray(id) {
 
 function buildTaskDom(id) {
     const task = todoList.find(todo => todo.id == id);
-    const listContentWrapper = document.createElement("div");
-    const textContent = document.createElement("p");
-    const buttonsWrapper = document.createElement("div");
-    const alterButton  = document.createElement("button");
-    const delButton = document.createElement("button");
-    
-    listContentWrapper.setAttribute("class", "list-content");
-    listContentWrapper.setAttribute("id", id);
-
-    textContent.setAttribute("class", "text-content");
-    textContent.setAttribute("id", id);
-    textContent.innerText = task.todo;
-
-    buttonsWrapper.setAttribute("class", "button-group");
-
-    alterButton.setAttribute("class", "modify-button");
-    alterButton.innerText = "Modifier";
-    alterButton.id = id;
-    alterButton.addEventListener("click", alterButtonAction);
-
-    delButton.setAttribute("class", "del-button");
-    delButton.innerText = "Supprimer";
-    delButton.id = id;
-    delButton.addEventListener("click",delButtonAction)
-
-    buttonsWrapper.appendChild(alterButton);
-    buttonsWrapper.appendChild(delButton);
-    listContentWrapper.appendChild(textContent);
-    listContentWrapper.appendChild(buttonsWrapper);
-    toDoListWrapper.appendChild(listContentWrapper);
+    todoTaskHtml += ` <div class="list-content" id=${task.id}>
+        <p class="text-content" id=${task.id}>${task.todo}</p>
+        <div class="button-group">
+            <button class="modify-button" id=${task.id}>Modifier</button>
+            <button class="del-button" id=${task.id}>Supprimer</button>
+        </div>
+    </div>`;
+    toDoListWrapper.innerHTML = todoTaskHtml;
 }
 
 /* register registers objects in a json file */
